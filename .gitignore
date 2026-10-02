@@ -1,0 +1,13 @@
+# Configuración local con contraseñas (NO subir)
+config/database.php
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+
+# Dependencias y logs
+vendor/
+*.log
+.env
