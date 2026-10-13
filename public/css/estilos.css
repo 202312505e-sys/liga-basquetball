@@ -23,3 +23,12 @@ form label { display: block; margin-bottom: 14px; font-weight: bold; }
 form input { display: block; width: 100%; max-width: 360px; padding: 8px; margin-top: 4px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 15px; }
 button.boton { border: 0; cursor: pointer; font-size: 15px; }
 .barra .usuario { color: #fbbf24; margin-left: 16px; }
+
+.cabecera-lista { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.cabecera-lista h1 { margin: 0; }
+.tabla { width: 100%; border-collapse: collapse; }
+.tabla th, .tabla td { text-align: left; padding: 10px; border-bottom: 1px solid #e5e7eb; }
+.tabla th { background: #f9fafb; }
+.acciones { display: flex; gap: 12px; align-items: center; }
+.acciones form { margin: 0; }
+.boton-peligro { background: #dc2626; color: #fff; border: 0; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 14px; }

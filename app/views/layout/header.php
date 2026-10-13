@@ -12,6 +12,7 @@
         <a class="marca" href="<?= url('inicio') ?>">🏀 Liga de Básquetbol</a>
             <nav>
                 <a href="<?= url('inicio') ?>">Inicio</a>
+                            <a href="<?= url('equipo') ?>">Equipos</a>
                 <?php if (estaLogueado()): ?>
                     <span class="usuario"><?= e($_SESSION['usuario_nombre']) ?></span>
                     <a href="<?= url('auth', 'logout') ?>">Salir</a>
