@@ -10,9 +10,16 @@
 <header class="barra">
     <div class="contenedor barra-interior">
         <a class="marca" href="<?= url('inicio') ?>">🏀 Liga de Básquetbol</a>
-        <nav>
-            <a href="<?= url('inicio') ?>">Inicio</a>
-        </nav>
+            <nav>
+                <a href="<?= url('inicio') ?>">Inicio</a>
+                <?php if (estaLogueado()): ?>
+                    <span class="usuario"><?= e($_SESSION['usuario_nombre']) ?></span>
+                    <a href="<?= url('auth', 'logout') ?>">Salir</a>
+                <?php else: ?>
+                    <a href="<?= url('auth', 'login') ?>">Iniciar sesión</a>
+                    <a href="<?= url('auth', 'registro') ?>">Registrarse</a>
+                <?php endif; ?>
+            </nav>
     </div>
 </header>
 

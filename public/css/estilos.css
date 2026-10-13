@@ -18,3 +18,8 @@ main { padding: 24px 16px; min-height: 70vh; }
 .alerta-error { background: #fee2e2; color: #991b1b; }
 
 .pie { background: #1f2937; color: #d1d5db; text-align: center; padding: 16px 0; font-size: 14px; }
+
+form label { display: block; margin-bottom: 14px; font-weight: bold; }
+form input { display: block; width: 100%; max-width: 360px; padding: 8px; margin-top: 4px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 15px; }
+button.boton { border: 0; cursor: pointer; font-size: 15px; }
+.barra .usuario { color: #fbbf24; margin-left: 16px; }
