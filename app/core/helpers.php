@@ -46,3 +46,17 @@ function esAdmin(): bool
 {
     return ($_SESSION['usuario_rol'] ?? '') === 'admin';
 }
+
+//funcion para requerir admin
+function requerirAdmin(): void
+{
+    if (!estaLogueado()) {
+        flash('error', 'Debes iniciar sesión para continuar.');
+        redirigir('auth', 'login');
+    }
+
+    if (!esAdmin()) {
+        flash('error', 'No tienes permiso para realizar esta acción.');
+        redirigir('inicio');
+    }
+}
