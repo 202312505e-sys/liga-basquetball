@@ -1,9 +1,9 @@
 <?php
-function vista(string $nombre, array $datos = []): void
+function vista(string $archivoVista, array $datos = []): void
 {
     extract($datos);
     require RAIZ . '/app/views/layout/header.php';
-    require RAIZ . '/app/views/' . $nombre . '.php';
+    require RAIZ . '/app/views/' . $archivoVista . '.php';
     require RAIZ . '/app/views/layout/footer.php';
 }
 
@@ -33,4 +33,16 @@ function flashes(): array
     $mensajes = $_SESSION['flash'] ?? [];
     unset($_SESSION['flash']);
     return $mensajes;
+}
+
+
+//funcion de loggeo
+function estaLogueado(): bool
+{
+    return isset($_SESSION['usuario_id']);
+}
+
+function esAdmin(): bool
+{
+    return ($_SESSION['usuario_rol'] ?? '') === 'admin';
 }
