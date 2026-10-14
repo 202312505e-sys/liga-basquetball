@@ -22,7 +22,7 @@
             <tbody>
             <?php foreach ($equipos as $equipo): ?>
                 <tr>
-                    <td><?= e($equipo['nombre']) ?></td>
+                    <td><a href="<?= e(url('jugador', 'index', ['equipo_id' => $equipo['id']])) ?>"><?= e($equipo['nombre']) ?></a></td>
                     <td><?= e($equipo['ciudad']) ?></td>
                     <td><?= e($equipo['entrenador']) ?></td>
                     <td><?= e($equipo['fundado_en']) ?></td>

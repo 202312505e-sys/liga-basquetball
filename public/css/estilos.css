@@ -32,3 +32,6 @@ button.boton { border: 0; cursor: pointer; font-size: 15px; }
 .acciones { display: flex; gap: 12px; align-items: center; }
 .acciones form { margin: 0; }
 .boton-peligro { background: #dc2626; color: #fff; border: 0; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 14px; }
+
+form select { display: block; width: 100%; max-width: 360px; padding: 8px; margin-top: 4px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 15px; background: #fff; }
+.volver { display: inline-block; margin-bottom: 12px; }
