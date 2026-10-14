@@ -60,7 +60,7 @@ class Jugador
             $datos['apellido'],
             $datos['dorsal'],
             $datos['posicion'],
-            $datos['estatura_cm'],4`
+            $datos['estatura_cm'],
             $datos['fecha_nacimiento'],
             $id,
         ]);
