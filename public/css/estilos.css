@@ -43,3 +43,6 @@ form select { display: block; width: 100%; max-width: 360px; padding: 8px; margi
 .etiqueta-programado { background: #fef3c7; color: #92400e; }
 .etiqueta-jugado { background: #dcfce7; color: #166534; }
 
+.pestanas { display: flex; gap: 8px; margin-bottom: 16px; border-bottom: 1px solid #e5e7eb; }
+.pestanas a { padding: 8px 14px; text-decoration: none; color: #6b7280; border-bottom: 2px solid transparent; }
+.pestanas a.activa { color: #ea580c; border-bottom-color: #ea580c; font-weight: bold; }
