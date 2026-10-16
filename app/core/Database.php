@@ -1,10 +1,14 @@
 <?php
 class Database
 {
-    private PDO $pdo;
+    private static ?PDO $pdo = null;
 
     public function __construct()
     {
+        if (self::$pdo !== null) {
+            return;
+        }
+
         $archivo = RAIZ . '/config/database.php';
 
         if (!is_file($archivo)) {
@@ -16,7 +20,7 @@ class Database
         $dsn = "mysql:host={$cfg['host']};port={$cfg['port']};dbname={$cfg['dbname']};charset={$cfg['charset']}";
 
         try {
-            $this->pdo = new PDO($dsn, $cfg['user'], $cfg['pass'], [
+            self::$pdo = new PDO($dsn, $cfg['user'], $cfg['pass'], [
                 PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
                 PDO::ATTR_EMULATE_PREPARES   => false,
@@ -28,6 +32,6 @@ class Database
 
     public function getConexion(): PDO
     {
-        return $this->pdo;
+        return self::$pdo;
     }
 }

@@ -13,6 +13,7 @@
             <nav>
                 <a href="<?= url('inicio') ?>">Inicio</a>
                             <a href="<?= url('equipo') ?>">Equipos</a>
+                            <a href="<?= url('partido') ?>">Partidos</a>
                 <?php if (estaLogueado()): ?>
                     <span class="usuario"><?= e($_SESSION['usuario_nombre']) ?></span>
                     <a href="<?= url('auth', 'logout') ?>">Salir</a>

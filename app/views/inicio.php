@@ -6,6 +6,6 @@
 <section class="rejilla">
     <article class="tarjeta"><h3>Equipos</h3><p><a href="<?= url('equipo') ?>">Ver equipos</a></p></article>
     <article class="tarjeta"><h3>Jugadores</h3><p><a href="<?= url('equipo') ?>">Ver por equipo</a></p></article>
-    <article class="tarjeta"><h3>Partidos</h3><p class="suave">Próximamente</p></article>
+    <article class="tarjeta"><h3>Partidos</h3><p><a href="<?= url('partido') ?>">Ver partidos</a></p></article>
     <article class="tarjeta"><h3>Estadísticas</h3><p class="suave">Próximamente</p></article>
 </section>
