@@ -1,5 +1,5 @@
-<section class="tarjeta">
-    <h1>Gestión de Liga de Básquetbol</h1>
+<section class="tarjeta centrado">
+    <img class="logo-portada" src="img/logo.png" alt="Liga de Básquetbol">
     <p>Sistema web para administrar equipos, jugadores, partidos y estadísticas.</p>
 </section>
 

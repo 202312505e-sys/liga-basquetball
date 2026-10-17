@@ -1,48 +1,192 @@
+/* ==========================================================
+   ESTILOS DE LA LIGA DE BÁSQUETBOL
+   Este archivo da el aspecto a todas las páginas.
+   Colores usados:
+     #1f2937  gris oscuro (barra y pie)
+     #ea580c  naranja (botones y detalles)
+     #fbbf24  ámbar (nombre del usuario)
+     #f3f4f6  gris claro (fondo de la página)
+   ========================================================== */
+
+
+/* ---------- 1. Base: reglas para toda la página ---------- */
+
+/* El ancho de un elemento incluye su borde y su relleno (más fácil de calcular) */
 * { box-sizing: border-box; }
+
+/* Fondo gris claro, letra Arial y sin márgenes alrededor de la página */
 body { margin: 0; font-family: Arial, sans-serif; background: #f3f4f6; color: #222; }
+
+/* Caja centrada de 960 px como máximo: aquí vive todo el contenido */
 .contenedor { max-width: 960px; margin: 0 auto; padding: 0 16px; }
 
+
+/* ---------- 2. Barra superior (header) ---------- */
+
+/* Fondo oscuro de la barra */
 .barra { background: #1f2937; }
+
+/* Coloca la marca a la izquierda y el menú a la derecha, alineados al centro */
 .barra-interior { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; }
+
+/* Enlaces del menú: blancos, sin subrayado y separados entre sí */
 .barra a { color: #fff; text-decoration: none; margin-left: 16px; }
+
+/* El nombre de la liga va en negrita y sin separación a la izquierda */
 .barra .marca { font-weight: bold; font-size: 18px; margin-left: 0; }
 
+
+/* ---------- 3. Contenido principal y tarjetas ---------- */
+
+/* Espacio alrededor del contenido; alto mínimo para que el pie quede abajo */
 main { padding: 24px 16px; min-height: 70vh; }
+
+/* Tarjeta blanca con bordes redondeados y una sombra suave */
 .tarjeta { background: #fff; border-radius: 8px; padding: 20px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,.1); }
+
+/* Rejilla de tarjetas: se acomodan solas según el ancho disponible */
 .rejilla { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+
+/* Texto secundario en gris */
 .suave { color: #6b7280; }
 
+
+/* ---------- 4. Botones y avisos ---------- */
+
+/* Botón naranja */
 .boton { display: inline-block; background: #ea580c; color: #fff; padding: 8px 16px; border-radius: 6px; text-decoration: none; }
+
+/* Recuadro de aviso (base) */
 .alerta { padding: 12px 16px; border-radius: 6px; margin-bottom: 16px; }
+
+/* Aviso verde: todo salió bien */
 .alerta-exito { background: #dcfce7; color: #166534; }
+
+/* Aviso rojo: hay algo que corregir */
 .alerta-error { background: #fee2e2; color: #991b1b; }
+
+
+/* ---------- 5. Pie de página ---------- */
 
 .pie { background: #1f2937; color: #d1d5db; text-align: center; padding: 16px 0; font-size: 14px; }
 
+
+/* ---------- 6. Formularios ---------- */
+
+/* Cada campo ocupa su propia línea y el texto va en negrita */
 form label { display: block; margin-bottom: 14px; font-weight: bold; }
+
+/* Campos de texto: ancho completo hasta 360 px, con borde gris y esquinas redondeadas */
 form input { display: block; width: 100%; max-width: 360px; padding: 8px; margin-top: 4px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 15px; }
+
+/* Los botones de enviar usan el estilo naranja, sin borde y con mano al pasar el mouse */
 button.boton { border: 0; cursor: pointer; font-size: 15px; }
+
+/* Nombre del usuario en la barra, en color ámbar */
 .barra .usuario { color: #fbbf24; margin-left: 16px; }
 
+
+/* ---------- 7. Listas y tablas ---------- */
+
+/* Título a la izquierda y botón a la derecha (por ejemplo "Equipos" y "Nuevo equipo") */
 .cabecera-lista { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
 .cabecera-lista h1 { margin: 0; }
+
+/* Tabla a todo el ancho, con las líneas de las celdas pegadas */
 .tabla { width: 100%; border-collapse: collapse; }
+
+/* Celdas con espacio interior y una línea gris debajo */
 .tabla th, .tabla td { text-align: left; padding: 10px; border-bottom: 1px solid #e5e7eb; }
+
+/* Fondo gris muy claro en los encabezados de la tabla */
 .tabla th { background: #f9fafb; }
+
+/* Enlace "Editar" y botón "Eliminar" en la misma fila */
 .acciones { display: flex; gap: 12px; align-items: center; }
 .acciones form { margin: 0; }
+
+/* Botón rojo de eliminar */
 .boton-peligro { background: #dc2626; color: #fff; border: 0; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 14px; }
 
+
+/* ---------- 8. Menús desplegables y enlace "Volver" ---------- */
+
+/* Mismo aspecto que los campos de texto */
 form select { display: block; width: 100%; max-width: 360px; padding: 8px; margin-top: 4px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 15px; background: #fff; }
+
+/* Separa un poco el enlace "← Volver a equipos" */
 .volver { display: inline-block; margin-bottom: 12px; }
 
-.dos-columnas { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-bottom: 16px; }
-.tabla input { width: 70px; margin-top: 0; padding: 6px; }
-.marcador { font-weight: bold; white-space: nowrap; }
-.etiqueta { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 13px; }
-.etiqueta-programado { background: #fef3c7; color: #92400e; }
-.etiqueta-jugado { background: #dcfce7; color: #166534; }
 
+/* ---------- 9. Partidos y resultados ---------- */
+
+/* Dos bloques lado a lado (local y visitante); en pantallas angostas se apilan */
+.dos-columnas { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-bottom: 16px; }
+
+/* Campos numéricos pequeños dentro de las tablas (puntos, rebotes, asistencias) */
+.tabla input { width: 70px; margin-top: 0; padding: 6px; }
+
+/* Marcador en negrita y sin partirse en dos líneas */
+.marcador { font-weight: bold; white-space: nowrap; }
+
+/* Etiqueta de estado del partido: forma de píldora */
+.etiqueta { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 13px; }
+.etiqueta-programado { background: #fef3c7; color: #92400e; }   /* amarillo: aún no se juega */
+.etiqueta-jugado { background: #dcfce7; color: #166534; }       /* verde: ya se jugó */
+
+
+/* ---------- 10. Pestañas de estadísticas ---------- */
+
+/* Fila de pestañas con una línea gris debajo */
 .pestanas { display: flex; gap: 8px; margin-bottom: 16px; border-bottom: 1px solid #e5e7eb; }
+
+/* Cada pestaña: gris, sin subrayado y con un borde inferior transparente */
 .pestanas a { padding: 8px 14px; text-decoration: none; color: #6b7280; border-bottom: 2px solid transparent; }
+
+/* La pestaña abierta: naranja, en negrita y con el borde inferior naranja */
 .pestanas a.activa { color: #ea580c; border-bottom-color: #ea580c; font-weight: bold; }
+
+
+/* ---------- 11. Logo ---------- */
+
+/* El ícono y el nombre quedan en una fila, centrados y con espacio entre ellos */
+.marca { display: flex; align-items: center; gap: 10px; }
+
+/* El ícono mide 44 px de alto y va sobre un recuadro blanco:
+   las letras oscuras del logo no se verían sobre la barra oscura */
+.marca img { height: 44px; width: auto; background: #fff; border-radius: 10px; padding: 3px 4px; }
+
+/* Centra el contenido de una tarjeta (se usa en la portada) */
+.centrado { text-align: center; }
+
+/* Logo grande de la página de inicio: nunca pasa de 420 px y se achica en pantallas pequeñas */
+.logo-portada { display: block; width: 100%; max-width: 420px; height: auto; margin: 0 auto 12px; }
+
+
+/* ---------- 12. Adaptable a celulares y tabletas ---------- */
+
+/* Si una tabla es más ancha que la tarjeta, se desliza hacia los lados
+   en vez de romper la página */
+.tarjeta { overflow-x: auto; }
+
+/* Las columnas nunca son más anchas que la pantalla (min elige el valor menor) */
+.dos-columnas { grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); }
+
+/* La barra y el menú pasan a varias filas cuando no caben en una */
+.barra-interior { flex-wrap: wrap; gap: 10px; }
+.barra nav { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 0; }
+
+/* Ajustes solo para pantallas de 700 px de ancho o menos (celulares) */
+@media (max-width: 700px) {
+    .barra-interior { justify-content: center; }                        /* centra la barra */
+    .barra nav { justify-content: center; }                             /* centra el menú */
+    .barra a { margin-left: 12px; }                                     /* menos separación entre enlaces */
+    .barra .marca { font-size: 16px; margin-left: 0; }                  /* nombre un poco más chico */
+    main { padding: 16px 8px; }                                         /* menos espacio a los lados */
+    .tarjeta { padding: 14px; }                                         /* tarjetas más compactas */
+    .tabla th, .tabla td { padding: 8px 6px; font-size: 14px; }         /* tablas más compactas */
+    .cabecera-lista { flex-direction: column; align-items: flex-start; gap: 10px; }  /* título y botón en columna */
+    .pestanas { flex-wrap: wrap; }                                      /* las pestañas pasan a otra fila */
+    .acciones { flex-wrap: wrap; }                                      /* Editar y Eliminar pueden bajar de línea */
+    form input, form select { max-width: 100%; }                        /* campos a todo el ancho */
+}
