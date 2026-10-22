@@ -3,7 +3,6 @@
 -- En un hosting la base de datos ya viene creada por el panel.
 -- Por eso este archivo NO crea ni borra la base: solo crea las
 -- tablas y agrega datos de ejemplo.
--- Se importa desde phpMyAdmin 
 -- ==============================================================
 
 -- Crear las tablas
@@ -15,7 +14,7 @@ CREATE TABLE usuarios (
     email         VARCHAR(120) NOT NULL UNIQUE,    -- dos usuarios no pueden tener el mismo email
     password_hash VARCHAR(255) NOT NULL,           -- contraseña ENCRIPTADA (nunca en texto plano)
     rol           VARCHAR(20)  NOT NULL DEFAULT 'visitante'   -- 'admin' o 'visitante'
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- TABLA 2: equipos 
 CREATE TABLE equipos (
@@ -24,9 +23,10 @@ CREATE TABLE equipos (
     ciudad      VARCHAR(80)  NOT NULL,
     entrenador  VARCHAR(100),                      -- sin NOT NULL = puede quedar vacío
     fundado_en  INT                                -- año, por ejemplo 2010
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- TABLA 3: jugadores 
+-- Cada jugador PERTENECE A UN equipo. Eso se guarda con una "clave foránea" (FK).
 CREATE TABLE jugadores (
     id               INT AUTO_INCREMENT PRIMARY KEY,
     equipo_id        INT NOT NULL,                 -- aquí se guarda el id del equipo del jugador
@@ -37,10 +37,15 @@ CREATE TABLE jugadores (
     estatura_cm      INT,
     fecha_nacimiento DATE,
 
+    -- FOREIGN KEY (clave foránea): "equipo_id debe ser un id que EXISTA en la tabla equipos".
+    -- Así MySQL impide asignar un jugador a un equipo que no existe.
+    -- ON DELETE CASCADE: si borras un equipo, se borran también sus jugadores.
     FOREIGN KEY (equipo_id) REFERENCES equipos(id) ON DELETE CASCADE
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- TABLA 4: partidos 
+-- Un partido lo juegan DOS equipos, por eso tiene DOS claves foráneas hacia equipos:
+-- una para el local y otra para el visitante.
 CREATE TABLE partidos (
     id                INT AUTO_INCREMENT PRIMARY KEY,
     local_id          INT NOT NULL,                -- id del equipo local
@@ -51,11 +56,15 @@ CREATE TABLE partidos (
     puntos_visitante  INT,
     estado            VARCHAR(20) NOT NULL DEFAULT 'programado',   -- 'programado' o 'jugado'
 
+    -- Sin "ON DELETE", MySQL NO deja borrar un equipo que ya tiene partidos
+    -- (protege el historial).
     FOREIGN KEY (local_id)     REFERENCES equipos(id),
     FOREIGN KEY (visitante_id) REFERENCES equipos(id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- TABLA 5: estadisticas_jugador 
+-- Une jugadores con partidos: cuántos puntos, rebotes y asistencias hizo
+-- UN jugador en UN partido. Por eso lleva dos claves foráneas.
 CREATE TABLE estadisticas_jugador (
     id          INT AUTO_INCREMENT PRIMARY KEY,
     partido_id  INT NOT NULL,
@@ -66,10 +75,10 @@ CREATE TABLE estadisticas_jugador (
 
     FOREIGN KEY (partido_id) REFERENCES partidos(id)  ON DELETE CASCADE,
     FOREIGN KEY (jugador_id) REFERENCES jugadores(id) ON DELETE CASCADE
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
-
+-- INSERT INTO 
 INSERT INTO equipos (nombre, ciudad, entrenador, fundado_en) VALUES
  ('Halcones del Cusco', 'Cusco',    'Marco Quispe', 2010),   -- será el equipo id = 1
  ('Pumas del Valle',    'Urubamba', 'Luis Condori', 2012),   -- id = 2
@@ -99,3 +108,21 @@ INSERT INTO estadisticas_jugador (partido_id, jugador_id, puntos, rebotes, asist
  (1, 3, 18, 7, 2);
 
 
+-- ==============================================================
+-- PASO 4. Consultas para comprobar y entender (ejecútalas una por una)
+-- Selecciona UNA línea y pulsa el rayo con el cursor (⚡ "Execute current statement").
+-- ==============================================================
+
+-- Ver todos los equipos:
+--   SELECT * FROM equipos;
+
+-- Ver cada jugador con el NOMBRE de su equipo (aquí se ve para qué sirve la clave foránea):
+--   SELECT j.nombre, j.apellido, e.nombre AS equipo
+--   FROM jugadores j
+--   JOIN equipos e ON j.equipo_id = e.id;
+
+-- Ver los partidos con los nombres de los dos equipos:
+--   SELECT l.nombre AS local, v.nombre AS visitante, p.puntos_local, p.puntos_visitante
+--   FROM partidos p
+--   JOIN equipos l ON p.local_id = l.id
+--   JOIN equipos v ON p.visitante_id = v.id;
