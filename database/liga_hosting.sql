@@ -129,3 +129,11 @@ INSERT INTO estadisticas_jugador (partido_id, jugador_id, puntos, rebotes, asist
 --   FROM partidos p
 --   JOIN equipos l ON p.local_id = l.id
 --   JOIN equipos v ON p.visitante_id = v.id;
+
+
+-- ==============================================================
+-- Cómo crear un administrador
+-- 1. Registra un usuario desde la pantalla "Registrarse".
+-- 2. Ejecuta esto con el correo que usaste:
+--    UPDATE usuarios SET rol = 'admin' WHERE email = 'tu_correo@ejemplo.com';
+-- ==============================================================
