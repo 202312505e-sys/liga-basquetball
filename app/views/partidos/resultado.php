@@ -16,6 +16,7 @@ $planteles = [
     <?php endforeach; ?>
 
     <form method="post" action="<?= e(url('partido', 'registrarResultado', ['id' => $partido['id']])) ?>">
+        <?= csrfCampo() ?>
         <div class="dos-columnas">
             <label>Puntos de <?= e($partido['local']) ?>
                 <input type="number" name="puntos_local" value="<?= e($valores['puntos_local']) ?>" min="0" max="300" required>

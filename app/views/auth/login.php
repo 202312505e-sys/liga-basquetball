@@ -2,6 +2,7 @@
     <h1>Iniciar sesión</h1>
 
     <form method="post" action="<?= e(url('auth', 'login')) ?>">
+        <?= csrfCampo() ?>
         <label>Correo
             <input type="email" name="email" required>
         </label>

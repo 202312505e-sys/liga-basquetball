@@ -31,6 +31,7 @@
                             <a href="<?= e(url('equipo', 'editar', ['id' => $equipo['id']])) ?>">Editar</a>
                             <form method="post" action="<?= e(url('equipo', 'eliminar')) ?>"
                                   onsubmit="return confirm('¿Eliminar este equipo? También se borrarán sus jugadores.');">
+                                  <?= csrfCampo() ?>
                                 <input type="hidden" name="id" value="<?= e($equipo['id']) ?>">
                                 <button class="boton-peligro" type="submit">Eliminar</button>
                             </form>
