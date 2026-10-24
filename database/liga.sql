@@ -72,6 +72,9 @@ CREATE TABLE estadisticas_jugador (
     rebotes     INT NOT NULL DEFAULT 0,
     asistencias INT NOT NULL DEFAULT 0,
 
+    UNIQUE (partido_id, jugador_id),   -- un jugador solo tiene una fila de estadísticas por partido
+    FOREIGN KEY (partido_id) REFERENCES partidos(id)  ON DELETE CASCADE,
+
     FOREIGN KEY (partido_id) REFERENCES partidos(id)  ON DELETE CASCADE,
     FOREIGN KEY (jugador_id) REFERENCES jugadores(id) ON DELETE CASCADE
 );
@@ -125,3 +128,11 @@ INSERT INTO estadisticas_jugador (partido_id, jugador_id, puntos, rebotes, asist
 --   FROM partidos p
 --   JOIN equipos l ON p.local_id = l.id
 --   JOIN equipos v ON p.visitante_id = v.id;
+
+
+-- ==============================================================
+-- Cómo crear un administrador
+-- 1. Registra un usuario desde la pantalla "Registrarse".
+-- 2. Ejecuta esto con el correo que usaste:
+--    UPDATE usuarios SET rol = 'admin' WHERE email = 'tu_correo@ejemplo.com';
+-- ==============================================================
