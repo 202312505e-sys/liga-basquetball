@@ -30,6 +30,10 @@ if (!preg_match('/^[a-z]+$/', $c) || !preg_match('/^[a-zA-Z][a-zA-Z0-9]*$/', $a)
     exit;
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    verificarCsrf();
+}
+
 if ($c === 'inicio') {
     vista('inicio', ['titulo' => 'Inicio']);
     exit;
