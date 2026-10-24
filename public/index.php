@@ -1,4 +1,11 @@
 <?php
+session_set_cookie_params([
+    'lifetime' => 0,
+    'path'     => '/',
+    'httponly' => true,
+    'samesite' => 'Lax',
+    'secure'   => !empty($_SERVER['HTTPS']),
+]);
 session_start();
 define('RAIZ', dirname(__DIR__));
 
@@ -21,6 +28,10 @@ if (!preg_match('/^[a-z]+$/', $c) || !preg_match('/^[a-zA-Z][a-zA-Z0-9]*$/', $a)
     http_response_code(404);
     vista('404', ['titulo' => 'Página no encontrada']);
     exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    verificarCsrf();
 }
 
 if ($c === 'inicio') {

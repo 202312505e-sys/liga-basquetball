@@ -6,6 +6,7 @@
     <?php endforeach; ?>
 
     <form method="post" action="<?= e(url('partido', 'programar')) ?>">
+        <?= csrfCampo() ?>
         <label>Equipo local
             <select name="local_id" required>
                 <option value="">Elige un equipo</option>

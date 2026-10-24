@@ -6,6 +6,7 @@
     <?php endforeach; ?>
 
     <form method="post" action="<?= e(url('auth', 'registro')) ?>">
+        <?= csrfCampo() ?>
         <label>Nombre
             <input type="text" name="nombre" value="<?= e($nombre) ?>" required>
         </label>

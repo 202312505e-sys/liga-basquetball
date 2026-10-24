@@ -6,6 +6,7 @@
     <?php endforeach; ?>
 
     <form method="post" action="<?= e($accion) ?>">
+        <?= csrfCampo() ?>
         <label>Nombre
             <input type="text" name="nombre" value="<?= e($equipo['nombre']) ?>" maxlength="100" required>
         </label>

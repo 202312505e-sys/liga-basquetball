@@ -190,3 +190,16 @@ form select { display: block; width: 100%; max-width: 360px; padding: 8px; margi
     .acciones { flex-wrap: wrap; }                                      /* Editar y Eliminar pueden bajar de línea */
     form input, form select { max-width: 100%; }                        /* campos a todo el ancho */
 }
+
+/* Botón "Salir" con el mismo aspecto que los enlaces de la barra */
+.barra .form-salir { display: inline; margin: 0 0 0 16px; }
+.barra .form-salir button {
+    background: none;
+    border: 0;
+    padding: 0;
+    color: #fff;
+    font: inherit;
+    cursor: pointer;
+}
+.barra .form-salir button:hover { text-decoration: underline; }
+.barra .form-salir { margin-left: 12px; }

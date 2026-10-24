@@ -73,6 +73,9 @@ class AuthController
 
     public function logout(): void
     {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            redirigir('inicio');
+        }
         unset($_SESSION['usuario_id'], $_SESSION['usuario_nombre'], $_SESSION['usuario_rol']);
         session_regenerate_id(true);
 

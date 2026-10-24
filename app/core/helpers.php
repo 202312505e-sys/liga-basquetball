@@ -60,3 +60,29 @@ function requerirAdmin(): void
         redirigir('inicio');
     }
 }
+
+
+//funciones contra CSRF
+function csrfToken(): string
+{
+    if (empty($_SESSION['csrf'])) {
+        $_SESSION['csrf'] = bin2hex(random_bytes(32));
+    }
+
+    return $_SESSION['csrf'];
+}
+
+function csrfCampo(): string
+{
+    return '<input type="hidden" name="csrf" value="' . e(csrfToken()) . '">';
+}
+
+function verificarCsrf(): void
+{
+    $enviado = $_POST['csrf'] ?? '';
+
+    if (!is_string($enviado) || !hash_equals(csrfToken(), $enviado)) {
+        flash('error', 'La sesión expiró o la solicitud no es válida. Intenta de nuevo.');
+        redirigir('inicio');
+    }
+}
