@@ -25,14 +25,14 @@ class Database
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
                 PDO::ATTR_EMULATE_PREPARES   => false,
             ]);
-            } catch (PDOException $e) {
+        } catch (PDOException $e) {
             error_log('Error de conexión: ' . $e->getMessage());
             http_response_code(500);
             die('No se pudo conectar con la base de datos. Intenta más tarde.');
         }
     }
 
-    public function getConexion(): PDO
+    public function getConexion(): PDO  
     {
         return self::$pdo;
     }
