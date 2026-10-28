@@ -72,9 +72,7 @@ CREATE TABLE estadisticas_jugador (
     rebotes     INT NOT NULL DEFAULT 0,
     asistencias INT NOT NULL DEFAULT 0,
 
-    UNIQUE (partido_id, jugador_id),   -- un jugador solo tiene una fila de estadísticas por partido
-    FOREIGN KEY (partido_id) REFERENCES partidos(id)  ON DELETE CASCADE,
-
+    UNIQUE (partido_id, jugador_id),
     FOREIGN KEY (partido_id) REFERENCES partidos(id)  ON DELETE CASCADE,
     FOREIGN KEY (jugador_id) REFERENCES jugadores(id) ON DELETE CASCADE
 );
