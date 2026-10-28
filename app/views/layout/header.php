@@ -22,10 +22,10 @@
             <a href="<?= url('estadistica', 'posiciones') ?>">Estadísticas</a>
             <?php if (estaLogueado()): ?>
                 <span class="usuario"><?= e($_SESSION['usuario_nombre']) ?></span>
-                <a href="<?= url('auth', 'logout') ?>">                <form class="form-salir" method="post" action="<?= e(url('auth', 'logout')) ?>">
+                <form class="form-salir" method="post" action="<?= e(url('auth', 'logout')) ?>">
                     <?= csrfCampo() ?>
                     <button type="submit">Salir</button>
-                </form></a>
+                </form>
                 
             <?php else: ?>
                 <a href="<?= url('auth', 'login') ?>">Iniciar sesión</a>

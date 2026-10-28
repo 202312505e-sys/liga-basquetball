@@ -201,5 +201,3 @@ form select { display: block; width: 100%; max-width: 360px; padding: 8px; margi
     font: inherit;
     cursor: pointer;
 }
-.barra .form-salir button:hover { text-decoration: underline; }
-.barra .form-salir { margin-left: 12px; }
