@@ -7,13 +7,12 @@
 
 Armé una aplicación web para administrar una liga de básquetbol. Permite registrar equipos, jugadores y partidos, guardar el resultado con las estadísticas de cada jugador y ver la tabla de posiciones y los máximos anotadores. Hay dos roles: el visitante solo consulta y el administrador además crea, edita y elimina.
 
-Usé PHP sin framework, MySQL con PDO, Git y GitHub. El sistema está publicado en InfinityFree.
+Usé PHP sin framework, MySQL con PDO, Git y GitHub, y lo publiqué en InfinityFree.
 
 ## 2. Arquitectura
 
-Organicé el código con el patrón MVC. Lo entiendo como un restaurante: el controlador es el mesero que recibe el pedido, el modelo es la cocina que prepara los datos y la vista es el plato que llega a la mesa.
-
-Todas las peticiones entran por `public/index.php`, que lee la URL (por ejemplo `?c=equipo&a=crear`), comprueba que el nombre sea válido y llama al método correspondiente.
+Organicé el código con el patrón MVC. 
+Todo entra por `public/index.php`, que lee la URL (por ejemplo `?c=equipo&a=crear`), valida los nombres y llama al método correspondiente.
 
 ## 3. Clases implementadas
 
@@ -35,32 +34,33 @@ Son cinco tablas: usuarios, equipos, jugadores, partidos y estadisticas_jugador.
 
 ## 6. Fragmentos relevantes
 
-**Registrar resultado.** El método `registrarResultado` de PartidoController revisa que los puntos de los jugadores de cada equipo no superen el marcador. Luego guarda marcador y estadísticas en una transacción. Funciona como una transferencia bancaria: o se hace completa o no se hace.
+**Registrar resultado.** El método `registrarResultado` de PartidoController revisa que los puntos de los jugadores de cada equipo no superen el marcador. Luego guarda marcador y estadísticas en una transacción. Es como una transferencia bancaria: o se hace completa o no se hace.
 
 **Tabla de posiciones.** El método `tablaPosiciones` de Estadistica usa una sola consulta. Cuenta cada partido dos veces, una para el local y otra para el visitante, y ordena por puntos y diferencia de puntos anotados.
 
-**Permisos.** La función `requerirAdmin()` se llama al inicio de cada acción de administrador. La protección está en el servidor y no solo en ocultar botones.
+**Permisos.** La función `requerirAdmin()` se llama al inicio de cada acción de administrador. La protección está en el servidor, no solo en ocultar botones.
 
 ## 7. Problemas y soluciones
 
 - **La transacción no podía funcionar.** Cada modelo abría su propia conexión. Cambié Database para que todos compartan una sola.
-- **Error de sintaxis en el modelo Jugador.** Quedó un carácter de más en una línea y lo corregí en un commit aparte.
 - **El hosting no deja crear la base de datos.** Escribí `liga_hosting.sql`, que solo crea las tablas, y le agregué el motor InnoDB para que las claves foráneas funcionen.
 - **Borrar un equipo con partidos.** La base de datos lo impide y el controlador captura ese error para mostrar un mensaje claro.
 
 ## 8. Decisiones técnicas
 
 - No usé Laravel y armé el MVC a mano para entender cómo se conectan sus piezas.
-- Usé URLs con parámetros y no URLs amigables, para no depender de `mod_rewrite`.
+- Usé URLs con parámetros para no depender de `mod_rewrite`.
 - El dorsal único se valida en el código y no en la base de datos.
 
 ## 9. Seguridad
 
 - Contraseñas con `password_hash` y consultas preparadas contra la inyección SQL.
-- Todo texto mostrado pasa por `htmlspecialchars`, contra ataques XSS.
-- Eliminar solo funciona por POST y con confirmación.
+- Todo texto mostrado pasa por `htmlspecialchars`, contra XSS.
+- Cada formulario lleva un token CSRF que el router verifica antes de ejecutar cualquier acción POST. Es como un sello que solo tiene quien está dentro de la oficina.
+- Eliminar y cerrar sesión solo funcionan por POST. El borrado además pide confirmación.
+- La sesión usa cookie HttpOnly con SameSite=Lax y se regenera al entrar y al salir.
 - `config/database.php` no se sube a GitHub; solo está `database.example.php`.
-- En el hosting, `.htaccess` manda todo a `public`, así que `app`, `config` y `database` no se abren desde el navegador.
+- `.htaccess` manda todo a `public`, así que `app`, `config` y `database` no se abren desde el navegador.
 
 ## 10. Instalación y uso
 
@@ -73,8 +73,8 @@ Para tener un administrador, registro un usuario y cambio su rol a `admin` en la
 
 ## 11. Limitaciones
 
-No tiene protección CSRF, no permite editar ni cancelar partidos programados y no incluye pruebas automáticas.
+No permite editar ni cancelar partidos programados, no tiene recuperación de contraseña ni límite de intentos de inicio de sesión, y no incluye pruebas automáticas.
 
 ## 12. Control de versiones
 
-Trabajé con una rama por módulo y fusioné cada una a `main` con un pull request. Los commits son pequeños, así que el historial muestra el avance paso a paso.
+Trabajé con una rama por módulo y fusioné cada una a `main` con un pull request. Los commits son pequeños y muestran el avance paso a paso.
