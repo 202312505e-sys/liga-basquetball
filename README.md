@@ -3,6 +3,7 @@
 Aplicación web para administrar una liga de básquetbol: equipos, jugadores, partidos, resultados con estadísticas, tabla de posiciones y máximos anotadores.
 
 **Práctica Calificada – Universidad Tecnológica de los Andes (UTEA)**
+
 **Autor:** Denis Alexander Meza Huarcaya
 
 Sitio publicado: https://liga-basquetbol.infinityfreeapp.com
