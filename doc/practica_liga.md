@@ -1,6 +1,7 @@
 # Sistema de Gestión de Liga de Básquetbol
 
 **Universidad Tecnológica de los Andes (UTEA) · Ingeniería de Sistemas e Informática**
+
 **Autor:** Denis Alexander Meza Huarcaya
 
 ## 1. Descripción general
