@@ -11,7 +11,8 @@ Usé PHP sin framework, MySQL con PDO, Git y GitHub, y lo publiqué en InfinityF
 
 ## 2. Arquitectura
 
-Organicé el código con el patrón MVC. 
+Organicé el código con el patrón MVC, que separa el sistema en tres partes: los modelos consultan la base de datos, las vistas muestran la página y los controladores conectan ambas.
+
 Todo entra por `public/index.php`, que lee la URL (por ejemplo `?c=equipo&a=crear`), valida los nombres y llama al método correspondiente.
 
 ## 3. Clases implementadas
